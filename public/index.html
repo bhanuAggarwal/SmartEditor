@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Smart Editor</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/css/materialize.min.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="css/jquery.Jcrop.min.css">
+  <link rel="stylesheet" href="css/application.css">
+  <script src="socket.io/socket.io.js"></script>
+</head>
+<body>
+  <div class="main-content">
+    <ul id="slide-out" class="side-nav fixed">
+      <li class="active waves-effect waves-teal"><a href="#filterContainer"><i class="material-icons">invert_colors</i> Filter</a></li>
+      <li class="waves-effect waves-teal"><a href="#advancedContainer"><i class="fa fa-adjust"></i> Advanced</a></li>
+      <li class="waves-effect waves-teal"><a href="#blurContainer"><i class="fa fa-bolt"></i> Blur</a></li>
+      <li class="waves-effect waves-teal"><a href="#cropContainer"><i class="fa fa-crop"></i> Crop</a></li>
+      <li class="waves-effect waves-teal"><a href="#textContainer"><i class="material-icons">textsms</i> Text</a></li>
+      <li class="waves-effect waves-teal"><a href="#framingContainer"><i class="material-icons">settings_overscan</i> Framing</a></li>
+      <li class="waves-effect waves-teal"><a href="#stickerContainer"><i class="material-icons">loyalty</i> Sticker</a></li>
+      <li class="waves-effect waves-teal"><a href="#addImageContainer"><i class="material-icons">subtitles</i> Add Image</a></li>
+    </ul>
+
+    <nav>
+      <div class="nav-wrapper pink-background">
+        <a href="index.html" class="brand-logo">SmartEditor</a>
+        <ul id="nav-mobile" class="right hide-on-med-and-down">
+          <li class="active"><a href="editor.html" class="waves-effect waves-light">Editor</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="editor-container">
+      <div id="photo">
+        <div class="preloader-wrapper big">
+          <div class="spinner-layer spinner-blue">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-red">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-yellow">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+
+          <div class="spinner-layer spinner-green">
+            <div class="circle-clipper left">
+              <div class="circle"></div>
+            </div><div class="gap-patch">
+              <div class="circle"></div>
+            </div><div class="circle-clipper right">
+              <div class="circle"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="filterContainer" style="display: block;">
+        <ul id="filters">
+          <li> <a href="#" id="normal">Original</a> </li>
+          <li> <a href="#" id="vintage">Vintage</a> </li>
+          <li> <a href="#" id="lomo">Lomo</a> </li>
+          <li> <a href="#" id="clarity">Clarity</a> </li>
+          <li> <a href="#" id="sinCity">Sin City</a> </li>
+          <li> <a href="#" id="sunrise">Sunrise</a> </li> 
+          <li> <a href="#" id="crossProcess">Cross</a> </li>
+          <li> <a href="#" id="orangePeel">Orange</a> </li>
+          <li> <a href="#" id="love">Love</a> </li>
+          <li> <a href="#" id="grungy">Grungy</a> </li>
+          <li> <a href="#" id="jarques">Jarques</a> </li>
+          <li> <a href="#" id="pinhole">Pinhole</a> </li>
+          <li> <a href="#" id="oldBoot">Old Boot</a> </li>
+          <li> <a href="#" id="glowingSun">Glowing Sun</a> </li>
+          <li> <a href="#" id="hazyDays">Hazy Days</a> </li>
+          <li> <a href="#" id="herMajesty">Her Majesty</a> </li>
+          <li> <a href="#" id="nostalgia">Nostalgia</a> </li>
+          <li> <a href="#" id="hemingway">Hemingway</a> </li>
+          <li> <a href="#" id="concentrate">Concentrate</a> </li>
+        </ul>
+      </div>
+
+      <div id="advancedContainer">
+          <div class="row">
+            <div class="col l3">
+              <div class="range-field">
+                <label for="brightness">Brightness</label>
+                <input type="range" id="brightness" name="brightness" min="-100" max="100" />
+              </div>
+              <div class="range-field">
+                <label for="hue">Hue</label>
+                <input type="range" id="hue" name="hue" min="0" max="100" value="0"/>
+              </div>
+            </div>
+            <div class="col l3">
+              <div class="range-field">
+                <label for="contrast">Contrast</label>
+                <input type="range" id="contrast" name="contrast" min="-100" max="100" />
+              </div>
+              <div class="range-field">
+                <label for="vibrance">Vibrance</label>
+                <input type="range" id="vibrance" name="vibrance" min="-100" max="100" />
+              </div>
+            </div>
+            <div class="col l3">
+              <div class="range-field">
+                <label for="sepia">Sepia</label>
+                <input type="range" id="sepia" name="sepia" min="0" max="100" value=" 0" />
+              </div>
+              <div class="range-field">
+                <label for="sharpen">Sharpen</label>
+                <input type="range" id="sharpen" name="sharpen" min="0" max="100" value="0" />
+              </div>
+            </div>
+            <div class="col l3">
+              <div class="range-field">
+                <label for="saturation">Saturation</label>
+                <input type="range" id="saturation" name="saturation" min="-100" max="100" />
+              </div>
+              <div class="range-field">
+                <label for="exposure">Exposure</label>
+                <input type="range" id="exposure" name="exposure" min="-100" max="100" />
+              </div>
+            </div>
+          </div>
+      </div>
+
+      <div id="blurContainer">
+        <div class="row">
+          <div class="col l6">
+            <div class="range-field">
+              <label for="blur">Blurry</label>
+              <input type="range" id="blur" name="blur" min="0" max="100" value="0" />
+            </div>
+          </div>
+          <div class="col l6">
+            <div class="range-field">
+              <label for="blurLight">Blurry Light</label>
+              <input type="range" id="blurLight" name="blurLight" min="-100" max="100" />
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div id="cropContainer">
+        <div class="row">
+          <div class="col l2 offset-l1">
+            <label for="xCrop"  class="active" >X Coordinate</label>
+            <input id="xCrop" type="number" class="validate">
+          </div>
+          <div class="col l2">
+            <label for="yCrop" class="active" >Y Coordinate</label>
+            <input id="yCrop" type="number" class="validate">
+          </div>
+          <div class="col l2">
+            <label for="widthCrop">Width</label>
+            <input id="widthCrop" type="number" class="validate">
+          </div>
+          <div class="col l2">
+            <label for="heightCrop">Height</label>
+            <input id="heightCrop" type="number" class="validate">
+          </div>
+          <div class="col l2">
+            <button class="waves-effect waves-light btn" id="cropBtn"><i class="material-icons right">send</i>Apply</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="textContainer">
+        <div class="row">
+          <div class="col l3" style="margin-top: 15px;">
+            <label for="textContent" class="active">Content</label>
+            <input id="textContent" type="text" class="validate" placeholder="Type your text ...">
+          </div>
+          <div class="col l2" style="margin-top: 15px;">
+            <div class="row">
+              <div class="col l6">
+                <label for="textTop" class="active">Top</label>
+                <input id="textTop" type="number" class="validate" value="0">
+              </div>
+              <div class="col l6">
+                <label for="textLeft" class="active">Left</label>
+                <input id="textLeft" type="number" class="validate" value="0">
+              </div>
+            </div>
+          </div>
+          <div class="col l3 input-field" id="textFont">
+            <div class="row">
+              <div class="col l8">
+                <label style="position: initial;">Fonts</label>
+                <select class="browser-default">
+                  <option value="Arial">Arial</option>
+                  <option value="Arial Black">Arial Black</option>
+                  <option value="Courier New">Courier New</option>
+                  <option value="Comic Sans MS">Comic Sans MS</option>
+                  <option value="Impact">Impact</option>
+                  <option value="Tahoma">Tahoma</option>
+                  <option value="Times New Roman">Times New Roman</option>
+                  <option value="Trebuchet MS">Trebuchet MS</option>
+                  <option value="Verdana">Verdana</option>
+                </select>
+              </div>
+              <div class="col l4">
+                <label style="position: initial;">Size</label>
+                <select class="browser-default" id="textSize">
+                  <option value="30">36</option>
+                  <option value="48">48</option>
+                  <option value="72">72</option>
+                  <option value="88">88</option>
+                  <option value="96">96</option>
+                  <option value="132">132</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          <div class="col l2" style="margin-top: 15px;">
+            <div class="row">
+              <div class="col l8">
+                <label class="active">Style</label>
+                <ul class="biu">
+                  <li>
+                    <a href="#" id="textBold"><i class="fa fa-bold"></i></a>
+                  </li>
+                  <li>
+                    <a href="#" id="textItalic"><i class="fa fa-italic"></i></a>
+                  </li>
+                  <li>
+                    <a href="#" id="textUnderline"><i class="fa fa-underline"></i></a>
+                  </li>
+                </ul>
+              </div>
+              <div class="col l4">
+                <label for="textColor" class="active">Color</label>
+                <input id="textColor" type="color" value="#18ffff">  
+              </div>
+            </div>
+          </div>
+          <div class="col l2">
+            <button class="waves-effect waves-light btn" id="textBtn"><i class="material-icons right">send</i>Apply</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="framingContainer">
+        <ul id="framers">
+          <li> <a href="#" id="framer1"></a> </li>
+          <li> <a href="#" id="framer2"></a> </li>
+          <li> <a href="#" id="framer3"></a> </li>
+          <li> <a href="#" id="framer4"></a> </li>
+          <li> <a href="#" id="framer5"></a> </li>
+          <li> <a href="#" id="framer6"></a> </li> 
+          <li> <a href="#" id="framer7"></a> </li>
+          <li> <a href="#" id="framer8"></a> </li>
+          <li> <a href="#" id="framer9"></a> </li>
+          <li> <a href="#" id="framer10"></a> </li>
+          <li> <a href="#" id="framer11"></a> </li>
+          <li> <a href="#" id="framer12"></a> </li>
+          <li> <a href="#" id="framer13"></a> </li>
+          <li> <a href="#" id="framer14"></a> </li>
+          <li> <a href="#" id="framer15"></a> </li>
+          <li> <a href="#" id="framer16"></a> </li>
+          <li> <a href="#" id="framer17"></a> </li>
+          <li> <a href="#" id="framer18"></a> </li>
+          <li> <a href="#" id="framer19"></a> </li>
+          <li> <a href="#" id="framer20"></a> </li>
+        </ul>
+
+        <div style="display: none;">
+          <img src="img/framers/framer1.png" id="img_framer1" width="1442" height="2000">
+          <img src="img/framers/framer2.png" id="img_framer2" width="1442" height="2000">
+          <img src="img/framers/framer3.png" id="img_framer3" width="1442" height="2000">
+          <img src="img/framers/framer4.png" id="img_framer4" width="1442" height="2000">
+          <img src="img/framers/framer5.png" id="img_framer5" width="1442" height="2000">
+          <img src="img/framers/framer6.png" id="img_framer6" width="1442" height="2000">
+          <img src="img/framers/framer7.png" id="img_framer7" width="1442" height="2000">
+          <img src="img/framers/framer8.png" id="img_framer8" width="1442" height="2000">
+          <img src="img/framers/framer9.png" id="img_framer9" width="1442" height="2000">
+          <img src="img/framers/framer10.png" id="img_framer10" width="1442" height="2000">
+          <img src="img/framers/framer11.png" id="img_framer11" width="1650" height="2200">
+          <img src="img/framers/framer12.png" id="img_framer12" width="1650" height="2200">
+          <img src="img/framers/framer13.png" id="img_framer13" width="1442" height="2000">
+          <img src="img/framers/framer14.png" id="img_framer14" width="1650" height="2200">
+          <img src="img/framers/framer15.png" id="img_framer15" width="1442" height="2000">
+          <img src="img/framers/framer16.png" id="img_framer16" width="1442" height="2000">
+          <img src="img/framers/framer17.png" id="img_framer17" width="1442" height="2000">
+          <img src="img/framers/framer18.png" id="img_framer18" width="1442" height="2000">
+          <img src="img/framers/framer19.png" id="img_framer19" width="1650" height="2200">
+          <img src="img/framers/framer20.png" id="img_framer20" width="1442" height="2000">
+        </div>
+      </div>
+
+      <div id="stickerContainer">
+        <div class="row" style="margin-bottom: 0;">
+          <div class="col l8" style="padding-left: 0; padding-right: 0; border-right: 5px solid #FF2E62;">
+            <ul id="stickers">
+              <li> <a href="#" id="sticker1"></a> </li>
+              <li> <a href="#" id="sticker2"></a> </li>
+              <li> <a href="#" id="sticker3"></a> </li>
+              <li> <a href="#" id="sticker4"></a> </li>
+              <li> <a href="#" id="sticker5"></a> </li>
+              <li> <a href="#" id="sticker6"></a> </li> 
+              <li> <a href="#" id="sticker7"></a> </li>
+              <li> <a href="#" id="sticker8"></a> </li>
+              <li> <a href="#" id="sticker9"></a> </li>
+              <li> <a href="#" id="sticker10"></a> </li>
+              <li> <a href="#" id="sticker11"></a> </li>
+              <li> <a href="#" id="sticker12"></a> </li>
+              <li> <a href="#" id="sticker13"></a> </li>
+              <li> <a href="#" id="sticker14"></a> </li>
+              <li> <a href="#" id="sticker15"></a> </li>
+              <li> <a href="#" id="sticker16"></a> </li>
+              <li> <a href="#" id="sticker17"></a> </li>
+              <li> <a href="#" id="sticker18"></a> </li>
+              <li> <a href="#" id="sticker19"></a> </li>
+              <li> <a href="#" id="sticker20"></a> </li>
+            </ul>
+          </div>
+          <div class="col l4" style="background: rgba(51, 51, 51, .8); margin-left: 0;">
+            <div class="col l3">
+              <label for="stickerTop" class="active">Top</label>
+              <input id="stickerTop" type="number" class="validate" value="0">
+            </div>
+            <div class="col l3">
+              <label for="stickerLeft" class="active">Left</label>
+              <input id="stickerLeft" type="number" class="validate" value="0">
+            </div>
+            <div class="col l6">
+              <button class="waves-effect waves-light btn" id="stickerBtn"><i class="material-icons right">send</i>Apply</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="display: none;">
+          <img src="img/stickers/sticker1.png" id="img_sticker1">
+          <img src="img/stickers/sticker2.png" id="img_sticker2">
+          <img src="img/stickers/sticker3.png" id="img_sticker3">
+          <img src="img/stickers/sticker4.png" id="img_sticker4">
+          <img src="img/stickers/sticker5.png" id="img_sticker5">
+          <img src="img/stickers/sticker6.png" id="img_sticker6">
+          <img src="img/stickers/sticker7.png" id="img_sticker7">
+          <img src="img/stickers/sticker8.png" id="img_sticker8">
+          <img src="img/stickers/sticker9.png" id="img_sticker9">
+          <img src="img/stickers/sticker10.png" id="img_sticker10">
+          <img src="img/stickers/sticker11.png" id="img_sticker11">
+          <img src="img/stickers/sticker12.png" id="img_sticker12">
+          <img src="img/stickers/sticker13.png" id="img_sticker13">
+          <img src="img/stickers/sticker14.png" id="img_sticker14">
+          <img src="img/stickers/sticker15.png" id="img_sticker15">
+          <img src="img/stickers/sticker16.png" id="img_sticker16">
+          <img src="img/stickers/sticker17.png" id="img_sticker17">
+          <img src="img/stickers/sticker18.png" id="img_sticker18">
+          <img src="img/stickers/sticker19.png" id="img_sticker19">
+          <img src="img/stickers/sticker20.png" id="img_sticker20">
+        </div>
+      </div>
+
+      <div id="addImageContainer">
+        <div class="row">
+          <div class="col l4 offset-l1 file-field input-field">
+            <div class="btn">
+              <span>File</span>
+              <input type="file" onchange="readURL(this);">
+            </div>
+            <div class="file-path-wrapper">
+              <input class="file-path validate" type="text" placeholder="Choose your image">
+            </div>
+          </div>
+          <div class="col l2">
+            <div class="img-container">
+              <img id="imgUpload" src="img/upload_img.png" alt="Upload image" style="height: 75px; display: block; margin: 0 auto;" />
+            </div>
+          </div>
+          <div class="col l4" style="background: rgba(51, 51, 51, .8); margin-left: 0;">
+            <div class="col l3">
+              <label for="addedImageTop" class="active">Top</label>
+              <input id="addedImageTop" type="number" class="validate" value="0">
+            </div>
+            <div class="col l3">
+              <label for="addedImageLeft" class="active">Left</label>
+              <input id="addedImageLeft" type="number" class="validate" value="0">
+            </div>
+            <div class="col l6">
+              <button class="waves-effect waves-light btn" id="addImageBtn" style="margin-top: 25px;"><i class="material-icons right">send</i>Apply</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="fixed-action-btn" style="bottom: 105px; left: 264px;">
+        <a class="btn-floating amber tooltipped" id="resetBtn" style="display: none; margin-right: 7.5px;" data-position="top" data-delay="5" data-tooltip="Reset">
+          <i class="material-icons orange waves-effect waves-light">replay</i>
+        </a>
+        <a class="btn-floating green tooltipped" id="addBtn" style="display: none;" data-position="top" data-delay="5" data-tooltip="Save">
+          <i class="material-icons right waves-effect waves-light">done</i>
+        </a>
+      </div>
+
+      <div class="fixed-action-btn imageAction" style="bottom: 105px; right: 24px;">
+        <a class="btn-floating btn-large red">
+          <i class="material-icons">mode_edit</i>
+        </a>
+        <ul>
+          <li><a href="#" class="btn-floating cyan tooltipped" id="downloadImage" target="_blank" data-position="left" data-delay="5" data-tooltip="Download"><i class="fa fa-cloud-download"></i></a></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4>Printing</h4>
+          <p>Choose size and quality of image which you want to print</p>
+        </div>
+        <form>
+          <div class="row">
+            <div class="col l6">
+              <i class="fa fa-caret-right"></i> Size:
+              <div class="row" style="margin-left: 15px;">
+                <p>
+                  <input class="with-gap" name="imageSize" type="radio" id="original" value="original" checked/>
+                  <label for="original">Original size</label>
+                </p>
+                <p>
+                  <input class="with-gap" name="imageSize" type="radio" id="optional" value="optional" />
+                  <label for="optional">Optional size</label>
+                </p>
+              </div>
+              <div class="row" id="printSizeInput" style="display: none; margin-left: 45px;">
+                <div class="col l6 input-field">
+                  <input id="printWidth" type="number" class="validate" value="1366">
+                  <label for="printWidth">Width</label>
+                </div>
+                <div class="col l6 input-field">
+                  <input id="printHeight" type="number" class="validate" value="768">
+                  <label for="printHeight">Height</label>
+                </div>
+              </div>
+            </div>
+            <div class="col l6">
+              <div class="row">
+                <i class="fa fa-caret-right"></i> Quality:
+                <select id="printQuality">
+                  <option value="1">Normal</option>
+                  <option value="2">Good Quality</option>
+                  <option value="3">Hight Quality</option>
+                </select>
+              </div>
+              <div class="row">
+                <i class="fa fa-caret-right"></i> Paper size:
+                <select id="paperSize">
+                  <option value="1.3">A3</option>
+                  <option value="1.2">A4</option>
+                  <option value="1.1">A5</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <a href="#modal2" id="printNext" class=" modal-action modal-close waves-effect waves-light btn cyan modal-trigger">Next<i class="material-icons right">send</i></a>
+      </div>
+    </div>
+
+    <!-- Modal Structure -->
+    <div id="modal2" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4>Payment</h4>
+          <p>You need to pay some money for this action</p>
+        </div>
+        <div class="price"></div>
+      </div>
+      <div class="modal-footer">
+        <a href="#!" id="printImage" class=" modal-action modal-close waves-effect waves-light btn cyan">Agree<i class="material-icons right">done</i></a>
+        <a href="#!" class=" modal-action modal-close waves-effect waves-light btn cyan" style="margin-right: 10px;">Cancel<i class="material-icons right">shuffle</i></a>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.1/js/materialize.min.js"></script>
+  <script src="js/caman.full.min.js"></script>
+  <script src="js/filereader.js"></script>
+  <script src="js/jquery.mousewheel.min.js"></script>
+  <script src="js/jquery.Jcrop.min.js"></script>
+  <script src="js/application.js"></script>
+  <script src="js/annyang.js"></script>
+  <script src="js/speech.js"></script>
+</body>
+</html>

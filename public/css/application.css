@@ -1,0 +1,660 @@
+@import url(https://fonts.googleapis.com/css?family=Patrick+Hand+SC&subset=latin,vietnamese);
+
+/*------------------------
+  Common style
+------------------------*/
+
+body{
+  background: url('../img/hoffman.png');
+}
+
+.main-content{
+  padding-left: 240px;
+}
+
+.pink-background{
+  background: #FF2E62 !important;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none !important;
+    margin: 0;
+}
+
+/*------------------------
+  Left side-bar
+------------------------*/
+
+.nav-wrapper{
+  padding: 0 5%;
+}
+
+.side-nav li{
+  padding: 0;
+  transition: all ease .5s;
+}
+
+.side-nav li:hover, .side-nav li.active{
+  background: #b2dfdb;
+}
+
+.side-nav li:hover{
+  padding-left: 15px;
+}
+
+#slide-out li a i{
+  line-height: inherit;
+  width: 2rem;
+  font-size: 1.6rem;
+  display: block;
+  float: left;
+  text-align: center;
+  margin-right: 1rem;
+}
+
+#slide-out .waves-effect{
+  display: block;
+}
+
+.logo-container{
+  width: 110px;
+  margin: 10px auto 5px auto;
+}
+
+.logo-container img{
+  max-width: 100%;
+  border-radius: 100%;
+}
+
+/*------------------------
+  Image style
+------------------------*/
+
+#photo{
+  width: 100%;
+  height: 480px;
+  margin: 2.5px auto;
+  text-align:center;
+  position:relative;
+  background: url('../img/plus.png') center no-repeat;
+}
+
+#photo:after{
+  content: 'Drop your photo here';
+  top: 150px;
+  z-index: 1;
+  color: #ccc;
+  font-size: 30px;
+  display: block;
+  position: absolute;
+  width: 100%;
+  letter-spacing: 1px;
+}
+
+#photo canvas{
+  max-width: 100%;
+  height: 470px;
+  text-align: center;
+  display: inline-block;
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, .3), 0 4px 20px 0 rgba(0, 0, 0, .4);
+  box-sizing: border-box;
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  left: 0;
+}
+
+#photo .jcrop-holder{
+  position: absolute !important;
+  top: 50%;
+  left: 50%;
+}
+
+#photo img{
+  opacity:0;
+}
+
+/*----------------------------
+  The filters container
+-----------------------------*/
+#filterContainer, 
+#advancedContainer, 
+#blurContainer,
+#cropContainer,
+#textContainer,
+#stickerContainer,
+#framingContainer,
+#addImageContainer{
+  width: 82.43%;
+  position: fixed;
+  bottom: 0;
+  left: 240px;
+  z-index: 3;
+  display: none;
+}
+
+#filters, #stickers, #framers{
+  padding: 7.5px 10px 0 10px;
+  margin: 0;
+  background: rgba(51, 51, 51, .8);
+  overflow: hidden;
+  white-space: nowrap;
+  overflow-x: scroll;
+}
+
+#filters li, #stickers li, #framers li{
+  display: inline-block;
+  margin: 0 15px 0 0;
+  background: re;
+}
+
+#stickers li {
+  margin-right: 10px;
+}
+
+#filters li:last-child, #stickers li:last-child, #framers li:last-child{
+  margin-right:0;
+}
+
+#filters li a, #stickers li a, #framers li a{
+  width: 60px;
+  height: 60px;
+  display: inline-block;
+  position: relative;
+  background-size: cover;
+  color: #fff;
+  line-height: 135px;
+  text-align: center;
+  border-radius: 4px;
+  font-size: 12px;
+  border: 3px solid #656464;
+}
+
+#filters li a.active, #stickers li a.active, #framers li a.active{
+  cursor:default;
+  border: 3px solid #4db6ac;
+}
+
+#filters li a.active:before, #stickers li a.active:before, #framers li a.active:before{
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: url('../img/checker.png') center no-repeat;
+}
+
+/* The filters */
+#filters li #normal{    background-image:url('../img/filters/normal.jpg'); }
+#filters li #vintage{   background-image:url('../img/filters/vintage.jpg'); }
+#filters li #lomo{      background-image:url('../img/filters/lomo.jpg'); }
+#filters li #clarity{   background-image:url('../img/filters/clarity.jpg'); }
+#filters li #sinCity{   background-image:url('../img/filters/sinCity.jpg'); }
+#filters li #sunrise{   background-image:url('../img/filters/sunrise.jpg'); }
+#filters li #crossProcess{  background-image:url('../img/filters/crossProcess.jpg'); }
+#filters li #orangePeel{  background-image:url('../img/filters/orangePeel.jpg'); }
+#filters li #love{      background-image:url('../img/filters/love.jpg'); }
+#filters li #grungy{    background-image:url('../img/filters/grungy.jpg'); }
+#filters li #jarques{   background-image:url('../img/filters/jarques.jpg'); }
+#filters li #pinhole{   background-image:url('../img/filters/pinhole.jpg'); }
+#filters li #oldBoot{   background-image:url('../img/filters/oldBoot.jpg'); }
+#filters li #glowingSun{  background-image:url('../img/filters/glowingSun.jpg'); }
+#filters li #hazyDays{    background-image:url('../img/filters/hazyDays.jpg'); }
+#filters li #herMajesty{  background-image:url('../img/filters/herMajesty.jpg'); }
+#filters li #nostalgia{   background-image:url('../img/filters/nostalgia.jpg'); }
+#filters li #hemingway{   background-image:url('../img/filters/hemingway.jpg'); }
+#filters li #concentrate{ background-image:url('../img/filters/concentrate.jpg'); }
+
+/* The filters */
+#stickers li #sticker1 { background-image: url('../img/stickers/sticker1.png');}
+#stickers li #sticker2 { background-image: url('../img/stickers/sticker2.png');}
+#stickers li #sticker3 { background-image: url('../img/stickers/sticker3.png');}
+#stickers li #sticker4 { background-image: url('../img/stickers/sticker4.png');}
+#stickers li #sticker5 { background-image: url('../img/stickers/sticker5.png');}
+#stickers li #sticker6 { background-image: url('../img/stickers/sticker6.png');}
+#stickers li #sticker7 { background-image: url('../img/stickers/sticker7.png');}
+#stickers li #sticker8 { background-image: url('../img/stickers/sticker8.png');}
+#stickers li #sticker9 { background-image: url('../img/stickers/sticker9.png');}
+#stickers li #sticker10 { background-image: url('../img/stickers/sticker10.png');}
+#stickers li #sticker11 { background-image: url('../img/stickers/sticker11.png');}
+#stickers li #sticker12 { background-image: url('../img/stickers/sticker12.png');}
+#stickers li #sticker13 { background-image: url('../img/stickers/sticker13.png');}
+#stickers li #sticker14 { background-image: url('../img/stickers/sticker14.png');}
+#stickers li #sticker15 { background-image: url('../img/stickers/sticker15.png');}
+#stickers li #sticker16 { background-image: url('../img/stickers/sticker16.png');}
+#stickers li #sticker17 { background-image: url('../img/stickers/sticker17.png');}
+#stickers li #sticker18 { background-image: url('../img/stickers/sticker18.png');}
+#stickers li #sticker19 { background-image: url('../img/stickers/sticker19.png');}
+#stickers li #sticker20 { background-image: url('../img/stickers/sticker20.png');}
+
+/* The framers*/
+#framers li #framer1 { background-image: url('../img/framers/framer1.png'); background-color: #fff;}
+#framers li #framer2 { background-image: url('../img/framers/framer2.png'); background-color: #fff;}
+#framers li #framer3 { background-image: url('../img/framers/framer3.png'); background-color: #fff;}
+#framers li #framer4 { background-image: url('../img/framers/framer4.png'); background-color: #fff;}
+#framers li #framer5 { background-image: url('../img/framers/framer5.png'); background-color: #fff;}
+#framers li #framer6 { background-image: url('../img/framers/framer6.png'); background-color: #fff;}
+#framers li #framer7 { background-image: url('../img/framers/framer7.png'); background-color: #fff;}
+#framers li #framer8 { background-image: url('../img/framers/framer8.png'); background-color: #fff;}
+#framers li #framer9 { background-image: url('../img/framers/framer9.png'); background-color: #fff;}
+#framers li #framer10 { background-image: url('../img/framers/framer10.png'); background-color: #fff;}
+#framers li #framer11 { background-image: url('../img/framers/framer11.png'); background-color: #fff;}
+#framers li #framer12 { background-image: url('../img/framers/framer12.png'); background-color: #fff;}
+#framers li #framer13 { background-image: url('../img/framers/framer13.png'); background-color: #fff;}
+#framers li #framer14 { background-image: url('../img/framers/framer14.png'); background-color: #fff;}
+#framers li #framer15 { background-image: url('../img/framers/framer15.png'); background-color: #fff;}
+#framers li #framer16 { background-image: url('../img/framers/framer16.png'); background-color: #fff;}
+#framers li #framer17 { background-image: url('../img/framers/framer17.png'); background-color: #fff;}
+#framers li #framer18 { background-image: url('../img/framers/framer18.png'); background-color: #fff;}
+#framers li #framer19 { background-image: url('../img/framers/framer19.png'); background-color: #fff;}
+#framers li #framer20 { background-image: url('../img/framers/framer20.png'); background-color: #fff;}
+
+
+/* Custom scrollbars for webkit */
+
+#filterContainer ::-webkit-scrollbar, #stickerContainer ::-webkit-scrollbar, #framingContainer ::-webkit-scrollbar{
+    height: 5px;
+  background-color: rgba(255, 255, 255, .1);
+}
+
+/* Handle */
+#filterContainer ::-webkit-scrollbar-thumb, #stickerContainer ::-webkit-scrollbar-thumb, #framingContainer ::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background: #FF2E62;
+}
+
+#filterContainer ::-webkit-scrollbar-thumb:window-inactive, #stickerContainer ::-webkit-scrollbar-thumb:window-inactive, #framingContainer ::-webkit-scrollbar-thumb:window-inactive{
+  background: #aaa;
+}
+
+.preloader-wrapper{
+  top: 208px;
+  z-index: 999;
+}
+
+.imageAction{
+  display: none;
+}
+
+/*----------------------------
+  The brightness and blur container
+-----------------------------*/
+
+#advancedContainer, #blurContainer, #cropContainer, #textContainer, #addImageContainer{
+  background: url('../img/footer_lodyas.png');
+}
+
+#advancedContainer .row, #textContainer .row{
+  margin-bottom: 5px;
+}
+
+#blurContainer .row{
+  margin: 18px 0;
+}
+
+ #addImageContainer .row{
+  margin: 5px 0;
+ }
+
+#blurContainer input[type=range], #advancedContainer input[type=range]{
+  border: none;
+}
+
+#advancedContainer input[type=range]{
+  margin: 0 0 5px 0 !important;
+}
+
+#advancedContainer label, #blurContainer label{
+  color: #4db6ac;
+}
+
+/*----------------------------
+  The crop container
+-----------------------------*/
+
+#cropContainer .row{
+  margin: 5px 0;
+}
+
+#cropContainer input[type=number], #textContainer input[type="text"], #textContainer input[type="number"]{
+  border-bottom: 1px solid #fff;
+  color: #fff;
+}
+
+#cropContainer input[type=number]:focus, #textContainer input[type="text"]:focus{
+  border-bottom: 1px solid #26a69a;
+  box-shadow: 0 1px 0 0 #26a69a; 
+}
+
+#cropContainer label{
+  color: #26a69a;
+}
+
+#cropContainer .btn{
+  margin-top: 28.5px;
+  text-transform: none;
+  box-shadow: 0 2px 5px 0 rgba(255, 255, 255, .16), 0 2px 10px 0 rgba(255, 255, 255, .12);
+}
+
+#cropContainer .btn:hover{
+  box-shadow: 0 4px 10px 0 rgba(255, 255, 255, .26), 0 4px 20px 0 rgba(255, 255, 255, .22); 
+}
+
+/*
+  Text container 
+*/
+
+#textContainer label{
+  color: #26a69a;
+  font-size: 1rem;
+}
+
+#textContainer select, #textContainer input{
+  height: 2rem;
+}
+
+#textContainer input[type=color]::-webkit-color-swatch-wrapper{
+  padding: 0 !important;
+  background: #fff;
+}
+
+#textContainer input[type=color]{
+  padding: 0 !important;
+  width: 50px;
+  height: 1.5rem;
+  display: block;
+  border: none;
+}
+
+#textContainer .biu{
+  margin: 0;
+}
+
+#textContainer .biu li{
+  display: inline-block;
+  margin: 0 1.5px;
+  width: 22.5px;
+  background: #ffa726;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#textContainer .biu li.active{
+  background: #ef6c00;
+}
+
+#textContainer .biu li a{
+  font-size: 10px;
+  color: #fff;
+  padding: 2.5px;
+}
+
+#textContainer .btn, #stickerContainer .btn{
+  margin-top: 28.5px;
+}
+
+/* 
+  Sticker container
+*/
+
+#stickerContainer input, #addImageContainer input{
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+#stickerContainer label, #addImageContainer label{
+  color: #26a69a;
+}
+
+
+/*
+  Home page
+*/
+section{
+  padding-bottom: 20px;
+}
+
+.header{
+  background: url('../img/bg.jpg');
+  background-size: cover;
+  height: 610px;
+}
+
+.intro{
+  position: absolute;
+  top: 30%;
+  left: 28%;
+  text-align: center;
+  color: #fff;
+}
+
+.intro h2{
+  font-weight: bold;
+}
+
+.intro p{
+  font-size: 18px;
+  margin-bottom: 40px;
+  color: #eeeeee;
+}
+
+.intro h5{
+  font-weight: 300;
+  margin-top: 40px;
+  color: #eeeeee;
+}
+
+.title{
+  color: #FF2E62;
+  margin: 0;
+  padding: 35px;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'Patrick Hand SC', cursive;
+  font-size: 45px !important;
+}
+
+.ie-list li{
+  padding: 10px 0;
+  font-size: 18px;
+  font-weight: 300;
+}
+
+.img-container {
+  width: 100%;
+}
+
+.img-container img{
+  max-width: 100%;
+}
+
+.ie-list i{
+  margin: 0 10px;
+  font-size: 30px;
+}
+
+#secsion2{
+  text-align: center;
+  color: #fff;
+}
+
+#secsion2 i{
+  font-size: 60px;
+  margin: 30px 0 15px 0;
+  color: #FF2E62;
+}
+
+#secsion2 h6{
+  font-weight: bold;  
+  color: #FF2E62;
+}
+
+#secsion2 p {
+  line-height: 2;
+}
+
+.post-card{
+  width: 90%;
+  overflow: hidden;
+  margin: 15px 0;
+  padding-bottom: 15px;
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+  transition: all .3s ease;
+  -webkit-transform: translate3d(0,0,0);
+}
+
+.post-card:hover{
+  transform: scale(1.03);
+}
+
+.post-card .card-image{
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.post-card .card-image img{
+  width: 100%;
+  max-height: 100%;
+}
+
+.post-card .card-info{
+  color: #a0a0a0;
+  padding: 10px;
+  text-align: left;
+  line-height: 2;
+}
+
+.post-card .card-info .heading{
+  font-size: 17px;
+  color: #00bcd4;
+  font-weight: 400;
+  padding-bottom: 10px;
+}
+
+.post-card .card-info .info{
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.said{
+  text-align: center;
+  color: #fff;
+}
+
+.said img {
+  width: 150px;
+  height: 150px;
+  margin: 30px 0;
+}
+
+.said h2{
+  margin: 10px 0;
+}
+
+.said .btn-large{
+  margin: 25px 0;
+  box-shadow: 0 2px 5px 0 rgba(255, 255, 255, .3),0 2px 10px 0 rgba(255, 255, 255, .4);
+}
+
+.said .btn-large:hover{
+  box-shadow: 0 4px 10px 0 rgba(255, 255, 255, .3),0 4px 20px 0 rgba(255, 255, 255, .4);  
+}
+
+footer{
+  background: #FF2E62;
+  color: #fff;
+  padding: 15px 0;
+}
+
+footer .row{
+  margin: 0;
+}
+
+.about-intro{
+  text-align: center;
+  background-size: cover;
+  padding: 35px 0;
+  line-height: 2;
+  color: #2d2d2d;
+}
+
+.about-intro img{
+  width: 250px;
+  height: 250px;
+  margin-top: 15px;
+}
+
+.about-intro h3{
+  color: #FF2E62;
+  font-weight: bold;
+}
+
+.about-intro i{
+  margin: 0 7.5px;
+  font-size: 25px;
+}
+
+.team-member{
+  text-align: center;
+  color: #fff;
+}
+
+.team-member img{
+  margin-top: 15px;
+  border: 3px solid #FF2E62;
+  border-radius: 50%;
+  box-shadow: 0 4px 8px 0 rgba(255, 255, 255, 0.4), 0 4px 10px 0 rgba(255, 255, 255, 0.5);
+}
+
+.team-member .name, .team-member .id-number{
+  font-weight: bold;
+  font-family: 'Patrick Hand SC', cursive;
+}
+
+.team-member .id-number{
+  margin: 0;
+  letter-spacing: 1.5px;
+}
+
+.modal .modal-content{
+  padding-bottom: 0 !important;
+}
+
+.modal .modal-footer{
+  padding: 24px;
+  padding-top: 0;
+}
+
+.modal .modal-header{
+  border-bottom: 1px dashed #bdbdbd;
+  margin-bottom: 25px;
+}
+
+.modal .modal-header h4{
+  color: #FF2E62;
+  margin-bottom: 5px;
+}
+
+.modal .modal-header p{
+  margin: 5px 0;
+}
+
+.modal .modal-content i{
+  margin-right: 5px;
+}
+
+.modal .modal-content .price{
+  text-align: center;
+  font-size: 30px;
+  padding: 30px 0 45px 0;
+  font-weight: bold;
+}
+
+.modal .modal-content .price span{
+  color: #00bcd4;
+  font-size: 65px;
+}

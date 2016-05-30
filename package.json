@@ -1,0 +1,8 @@
+{
+  "name": "iEditor",
+  "author": "Bhanu",
+  "dependencies": {
+    "express": "~3.4.4",
+    "socket.io": "^1.0.6"
+  }
+}
